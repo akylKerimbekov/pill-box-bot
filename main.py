@@ -1,9 +1,8 @@
 from aiogram import executor
 
 from config.bot_config import dispatcher
-from handler.user_registration_form import register_registration_handlers
-from handler.start import register_start_handlers
-from handler.pill_form import register_pill_form_handlers
+from handler.start_controller import register_start_handlers
+from handler.pill_controller import register_pill_form_handlers
 from repository.db_manager import DBManager
 
 
@@ -12,7 +11,6 @@ async def on_startup(_):
     db.init_db()
 
 register_start_handlers(dispatcher=dispatcher)
-register_registration_handlers(dispatcher=dispatcher)
 register_pill_form_handlers(dispatcher=dispatcher)
 
 if __name__ == '__main__':
