@@ -2,7 +2,7 @@ import queue
 import sqlite3
 
 from config.bot_config import DB_PATH, DB_POOL_MAX_SIZE
-from repository.script import sql_user_script
+from repository.script import sql_user_script, sql_pill_script
 
 
 class DBManager:
@@ -36,4 +36,5 @@ class DBManager:
 
     def init_db(self):
         self.get_connection().execute(sql_user_script.CREATE_USER_TABLE)
+        self.get_connection().execute(sql_pill_script.CREATE_PILL_TABLE)
         print("Database was initiated successfully")
