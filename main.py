@@ -1,2 +1,21 @@
+from aiogram import executor
+
+from config.bot_config import dispatcher
+from handler.user_registration_form import register_registration_handlers
+from handler.start import register_start_handlers
+from repository.db_manager import DBManager
+
+
+async def on_startup(_):
+    db = DBManager()
+    db.init_db()
+
+register_start_handlers(dispatcher=dispatcher)
+register_registration_handlers(dispatcher=dispatcher)
+
 if __name__ == '__main__':
-    pass
+    executor.start_polling(
+        dispatcher=dispatcher,
+        skip_updates=True,
+        on_startup=on_startup
+    )
