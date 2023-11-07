@@ -13,8 +13,7 @@ CREATE_USER_TABLE = """
 
 INSERT_INTO_USER_QUERY = """
     insert into tg_user(id, tg_id, username, first_name, last_name, phone_number, is_active)
-    values (:id, :tg_id, :username, :first_name, :last_name, :phone_number, :is_active)
-    returning *;
+    values (:id, :tg_id, :username, :first_name, :last_name, :phone_number, :is_active);
 """
 
 SELECT_USER_BY_TG_ID_QUERY = """

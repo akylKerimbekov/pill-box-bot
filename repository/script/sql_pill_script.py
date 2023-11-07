@@ -12,8 +12,7 @@ CREATE_PILL_TABLE = """
 
 INSERT_INTO_PILL_QUERY = """
     insert into pill(id, tg_id, description, time, frequency, is_active)
-    values (:id, :tg_id, :description, :time, :frequency, :is_active)
-    returning *;
+    values (:id, :tg_id, :description, :time, :frequency, :is_active);
 """
 
 SELECT_ALL_PILLS_BY_TG_ID_QUERY = """

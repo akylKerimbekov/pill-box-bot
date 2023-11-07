@@ -21,7 +21,7 @@ class PillRegisterStates(StatesGroup):
 async def new_pill_start(call: types.CallbackQuery):
     print("new pill")
     user = message_to_user(call.message)
-    known_user = await UserService().create_user(user)
+    await UserService().create_user(user)
     await bot.send_message(
         chat_id=call.from_user.id,
         text="Description",
@@ -63,7 +63,7 @@ async def load_frequency(message: types.Message, state: FSMContext):
         pills = []
         for item in data["times"]:
             pills.append(Pill(None, message.from_user.id, data["description"], item, data["frequency"], 1))
-        saved_pills = await PillService().create_pill(pills)
+        await PillService().create_pill(pills)
     await bot.send_message(
         chat_id=message.from_user.id,
         text="Registered successfully"

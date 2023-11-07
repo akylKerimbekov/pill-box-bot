@@ -8,12 +8,13 @@ from service.user_service import UserService
 
 async def start_button(message: types.Message):
     print(message)
-    user = message_to_user(message)
-    saved_user = await UserService().create_user(user)
-    if saved_user and saved_user.user_id:
-        response_text = "You have registered successfully"
-    else:
+
+    if UserService().not_new_user(tg_id=message.from_user.id):
         response_text = "You have registered already"
+    else:
+        user = message_to_user(message)
+        await UserService().create_user(user)
+        response_text = "You have registered successfully"
 
     await bot.send_message(
         chat_id=message.from_user.id,

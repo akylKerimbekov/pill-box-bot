@@ -7,12 +7,8 @@ class PillService:
         self.repository = PillRepository()
 
     async def create_pill(self, pills: list):
-        saved_pills = []
         for pill in pills:
-            saved_pill = self.repository.insert(pill)
-            saved_pills.append(db_to_pill(saved_pill))
-
-        return saved_pills
+            self.repository.insert(pill)
 
     async def find_all_pills(self, tg_id):
         pill_list = self.repository.find_by_tg_id(tg_id)

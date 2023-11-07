@@ -18,7 +18,7 @@ class PillRepository:
         }
 
     def insert(self, pill: Pill):
-        saved_pill = self.cursor.execute(
+        self.cursor.execute(
             sql_pill_script.INSERT_INTO_PILL_QUERY,
             {
                 "id": None,
@@ -28,9 +28,8 @@ class PillRepository:
                 "frequency": pill.frequency,
                 "is_active": pill.is_active
             }
-        ).fetchone()
+        )
         self.connection.commit()
-        return saved_pill
 
     def find_by_tg_id(self, tg_id):
         saved_pill = self.cursor.execute(

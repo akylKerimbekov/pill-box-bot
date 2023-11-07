@@ -19,7 +19,7 @@ class UserRepository:
         }
 
     def insert(self, user: User):
-        saved_user = self.cursor.execute(
+        self.cursor.execute(
             sql_user_script.INSERT_INTO_USER_QUERY,
             {
                 "id": None,
@@ -30,9 +30,9 @@ class UserRepository:
                 "phone_number": user.phone_number,
                 "is_active": user.is_active
             }
-        ).fetchone()
+        )
         self.connection.commit()
-        return saved_user
+
 
     def find_by_tg_id(self, tg_id):
         saved_user = self.cursor.execute(
